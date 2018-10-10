@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 08:44 PM
+-- Generation Time: Oct 10, 2018 at 04:27 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -31,11 +31,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `students` (
   `id` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
-  `firstName` int(11) NOT NULL,
-  `lastName` int(11) NOT NULL,
-  `contactNo` int(11) NOT NULL,
-  `address` int(11) NOT NULL
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `contactNo` varchar(50) NOT NULL,
+  `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `studentId`, `firstName`, `lastName`, `contactNo`, `address`) VALUES
+(3, 18100001, 'Ruvejen', 'Enot', '14288484', 'Pardo'),
+(4, 18100001, 'Mitch', 'Alforque', '09567130760', 'Tabada'),
+(5, 18100001, 'Merlrose', 'Evin', '09567130760', 'Barangay Guba Pit\'os');
 
 -- --------------------------------------------------------
 
@@ -51,6 +60,16 @@ CREATE TABLE `users` (
   `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `avatar`, `username`, `password`, `status`) VALUES
+(3, 'gwapa1.jpg', '18100001', '18100001', 1),
+(4, 'gwapa2.jpg', '18100001', '18100001', 1),
+(5, 'gwapa3.jpg', '18100001', '18100001', 1),
+(6, '', 'admin', 'admin', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +81,15 @@ CREATE TABLE `user_student` (
   `studentId` int(11) NOT NULL,
   `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_student`
+--
+
+INSERT INTO `user_student` (`id`, `studentId`, `userId`) VALUES
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5);
 
 --
 -- Indexes for dumped tables
@@ -93,19 +121,19 @@ ALTER TABLE `user_student`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_student`
 --
 ALTER TABLE `user_student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

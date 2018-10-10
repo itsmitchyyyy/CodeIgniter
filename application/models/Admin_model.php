@@ -4,6 +4,25 @@ class Admin_model extends CI_Model {
         $this->load->database();
     }
 
+    public function getStudents($student = FALSE){
+        if($student === FALSE){
+            $query = $this->db->select('*')
+                ->from('students')
+                ->join('user_student', 'user_student.studentId = students.id')
+                ->join('users', 'users.id = user_student.userId')
+                ->get();
+            return $query->result_array();
+        }
+
+        $query = $this->db->select('*')
+            ->from('students')
+            ->join('user_student', 'user_student.studentId = students.id')
+            ->join('users', 'users.id = user_student.userId')
+            ->where('users', $student)
+            ->get();
+        return $query->row_array();
+    }
+
     public function createStudent($data){
         $generateId = $this->db->select('studentId')
                 ->order_by('id', 'DESC')
@@ -38,6 +57,7 @@ class Admin_model extends CI_Model {
             'studentId' => $lastStudentId,
             'userId' => $lastUserId
         );
+        echo $data;
         return $this->db->insert('user_student', $userStudent);
     }
 }

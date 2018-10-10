@@ -2,6 +2,7 @@
 class Admin extends CI_Controller{
     public function index(){
         $data['title'] = 'Admin';
+        $data['students'] = $this->admin_model->getStudents();
 
         $this->load->view('templates/admin-header');
         $this->load->view('admin/index', $data);
@@ -9,13 +10,16 @@ class Admin extends CI_Controller{
     }
 
     public function insertStudent(){
-        $config['upload_path'] = base_url().'assets/uploads/';
+        $config = array(
+            'upload_path' => './assets/uploads/',
+            'allowed_types' => "gif|jpg|png|jpeg",
+        );
         $this->load->library('upload', $config);
-        if($this->upload->do_upload('userAvatar')){
+        if(!$this->upload->do_upload('userPic')){
+            $data = null; 
+        }else{
            $initialData = array('upload_data' => $this->upload->data());
            $data = $initialData['upload_data']['file_name'];
-        }else{
-            $data = array('upload_data' => null); 
         }
         $this->form_validation->set_rules('firstName', 'First Name' ,'required');
         $this->form_validation->set_rules('lastName', 'Last Name' ,'required');
@@ -27,6 +31,7 @@ class Admin extends CI_Controller{
             $this->load->view('templates/admin-footer');
         }else{
             $this->admin_model->createStudent($data);
+            $this->session->set_flashdata('message', 'Student Added');
             redirect('admin');
         }
     }
