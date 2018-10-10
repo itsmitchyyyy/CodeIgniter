@@ -30,7 +30,7 @@ class Admin extends CI_Controller{
             $this->load->view('admin/index', $data);
             $this->load->view('templates/admin-footer');
         }else{
-            $this->admin_model->createStudent($data);
+            $data = $this->admin_model->createStudent($data);
             $this->session->set_flashdata('message', 'Student Added');
             redirect('admin');
         }

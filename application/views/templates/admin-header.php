@@ -1,3 +1,9 @@
+<?php 
+
+if(!isset($this->session->userdata['name'])){
+    header('location:'.base_url());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,4 +27,3 @@
     </style>
 </head>
 <body>
-    

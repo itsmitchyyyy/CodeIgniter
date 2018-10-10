@@ -11,4 +11,41 @@ class Pages extends CI_Controller {
         $this->load->view('pages/'.$page, $data);
         $this->load->view('templates/footer');
     }
+
+    public function login(){
+        $config = array(
+            array('field' => 'username','label' => 'Username','rules' => 'required' ),
+            array('field' => 'password','label' => 'Password','rules'=> 'required', 'errors' => array('required' => 'You must provide a %s'))
+        );
+        $this->form_validation->set_rules($config);
+        if($this->form_validation->run() === FALSE){
+            $this->load->view('templates/header');
+            $this->load->view('pages/home');
+            $this->load->view('templates/footer');
+        }else{
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+            $result = $this->page_model->login(array($username, $password));
+            if($result['status'] == true){
+                $data = array(
+                    'logged_in' => $result['data']['userId'],
+                    'name' => $result['name']
+                );
+                $this->session->set_userdata($data);
+                if($result['user'] == 'admin'){
+                    redirect('admin');
+                }
+                if($result['user'] == 'teacher'){
+                    echo 'TODO TEACHER';
+                }
+                echo 'TODO STUDENT';
+            }
+        }
+    }
+
+    public function logout(){
+        $items = array('logged_in', 'name');
+        $this->session->unset_userdata($items);
+        redirect(base_url());
+    }
 }

@@ -18,7 +18,7 @@ class Admin_model extends CI_Model {
             ->from('students')
             ->join('user_student', 'user_student.studentId = students.id')
             ->join('users', 'users.id = user_student.userId')
-            ->where('users', $student)
+            ->where('students.id', $student)
             ->get();
         return $query->row_array();
     }
@@ -34,7 +34,7 @@ class Admin_model extends CI_Model {
         if($generateId == null){
             $idNumber = $baseID.''.str_pad(1,$digits,'0',STR_PAD_LEFT);
         }else{
-            $lastId = substr($generateId['studentId'], -4);
+            $lastId = substr($generateId[0]['studentId'], -4);
             $idNumber = $baseID.''.str_pad($lastId + 1, $digits, '0', STR_PAD_LEFT);
         }
         $studentData = array(
@@ -47,7 +47,7 @@ class Admin_model extends CI_Model {
         $userData = array(
             'avatar' => $data,
             'username' => $idNumber,
-            'password' => $idNumber
+            'password' => password_hash($idNumber, PASSWORD_DEFAULT)
         );
         $this->db->insert('users', $userData);
         $lastUserId = $this->db->insert_id();
