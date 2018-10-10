@@ -9,10 +9,6 @@
             <!-- END NAVBAR -->
             <div>
                 <!-- MESSAGE SESSION -->
-                <?php 
-
- var_dump($this->session->userdata['name']);
-?>
                 <?php if($this->session->flashdata('message')): ?>
                     <div class="alert alert-success">
                         <p><?php echo $this->session->flashdata('message'); ?></p>
