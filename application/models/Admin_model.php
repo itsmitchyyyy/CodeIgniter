@@ -4,8 +4,8 @@ class Admin_model extends CI_Model {
         $this->load->database();
     }
 
-    public function getStudents($student = FALSE){
-        if($student === FALSE){
+    public function getStudents($student = null){
+        if($student === null){
             $query = $this->db->select('*')
                 ->from('students')
                 ->join('user_student', 'user_student.studentId = students.id')
@@ -57,7 +57,22 @@ class Admin_model extends CI_Model {
             'studentId' => $lastStudentId,
             'userId' => $lastUserId
         );
-        echo $data;
         return $this->db->insert('user_student', $userStudent);
+    }
+
+    // SECTION
+
+    public function getSections($section = null){
+        if($section === null){
+            $query = $this->db->get('sections');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('sections', array('id' => $section));
+            return $query->row_array();
+    }
+
+    public function createSection(){
+        $sectionData = array('sectionName' => $this->input->post('sectionName'));
+        return $this->db->insert('sections', $sectionData);
     }
 }

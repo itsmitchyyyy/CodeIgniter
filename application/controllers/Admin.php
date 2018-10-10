@@ -52,11 +52,28 @@ class Admin extends CI_Controller{
         $this->load->view('templates/admin-footer');
     }
 
+    // SECTION
+
     public function section(){
-        $data['title'] = 'Teacher';
+        $data['sections'] = $this->admin_model->getSections();
         
         $this->load->view('templates/admin-header');
         $this->load->view('admin/section', $data);
         $this->load->view('templates/admin-footer');
     }
+
+    public function insertSection(){
+        $this->form_validation->set_rules('sectionName', 'Section Name', 'required');
+        if($this->form_validation->run() === FALSE){
+            $this->load->view('templates/admin-header');
+            $this->load->view('admin/section');
+            $this->load->view('templates/admin-footer');
+        }else{
+            $this->session->set_flashdata('message', 'Section Added');
+            $this->admin_model->createSection();
+            redirect('admin/section');
+        }
+    }
+
+    
 }

@@ -18,8 +18,8 @@
                 <!-- ADD BUTTON -->
                 <button class="btn btn-info" data-target="#assignStudentModal" data-toggle="modal">
                     Assign Student
-                <!-- END BUTTON -->
                 </button>
+                <!-- END BUTTON -->
             <!-- ADD MODAL -->
                 <div class="modal fade" id="assignStudentModal">
                     <div class="modal-dialog modal-lg">
