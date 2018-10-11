@@ -24,7 +24,8 @@ class Page_model extends CI_Model{
                 return array('status' => $status, 'user' => 'student', 'name' => $name, 'data' => $student);
             }
         }else{
-            return false;
+            $status = false;
+            return array('status' => $status);
         }
     }
 

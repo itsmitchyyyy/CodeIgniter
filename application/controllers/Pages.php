@@ -29,7 +29,8 @@ class Pages extends CI_Controller {
             if($result['status'] == true){
                 $data = array(
                     'logged_in' => $result['data']['userId'],
-                    'name' => $result['name']
+                    'name' => $result['name'],
+                    'type' => $result['user']
                 );
                 $this->session->set_userdata($data);
                 if($result['user'] == 'admin'){
@@ -40,11 +41,13 @@ class Pages extends CI_Controller {
                 }
                 echo 'TODO STUDENT';
             }
+            $this->session->set_flashdata('message', 'Invalid Credentials');
+            redirect('');
         }
     }
 
     public function logout(){
-        $items = array('logged_in', 'name');
+        $items = array('logged_in', 'name', 'type');
         $this->session->unset_userdata($items);
         redirect(base_url());
     }

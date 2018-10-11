@@ -6,6 +6,11 @@
                     <div class="d-flex align-items-center justify-content-center border-bottom mb-4">
                         <h4>Login</h4>
                     </div>
+                    <?php if($this->session->flashdata('message')): ?>
+                    <div class="login-error">
+                       <?php echo $this->session->flashdata('message'); ?>
+                    </div>
+                    <?php endif; ?>
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="username" class="form-control <?php echo (form_error('username')) ? 'is-invalid' : '' ?>" placeholder="Username">

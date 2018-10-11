@@ -1,3 +1,4 @@
+<?php $this->load->view('templates/redirect'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,4 +32,6 @@
     </style>
 </head>
 <body>
+
+<div class="loader" id="loader"></div>
     

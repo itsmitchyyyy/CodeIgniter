@@ -1,6 +1,6 @@
 <?php 
 
-if(!isset($this->session->userdata['name'])){
+if(!isset($this->session->userdata['type'])){
     header('location:'.base_url());
 }
 ?>
