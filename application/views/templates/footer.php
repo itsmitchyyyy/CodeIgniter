@@ -5,8 +5,11 @@
     <script src="<?php echo base_url(); ?>assets/js/pp.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bs.js"></script>
 <script>
- $(document).ready(function(){
-  	$('.loader').fadeOut('slow');
+ $(window).ready(function(){
+     if(sessionStorage.getItem('dontLoad') == null){
+         $('.loader').delay(3000).show().fadeOut('slow');
+         sessionStorage.setItem('dontLoad', true);
+     }
 });
 </script>
 </html>
