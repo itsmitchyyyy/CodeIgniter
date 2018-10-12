@@ -41,17 +41,29 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="firstName" class="form-control" placeholder="First Name">
+                                    <input type="text" name="firstName" class="form-control <?php echo (form_error('firstName')) ? 'is-invalid' : '' ?>" value="<?=set_value('firstName')?>" placeholder="First Name">
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('firstName'); ?>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="lastName" class="form-control" placeholder="Last Name">
+                                    <input type="text" name="lastName" class="form-control <?php echo (form_error('lastName')) ? 'is-invalid' : '' ?>" value="<?=set_value('lastName')?>" placeholder="Last Name">
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('lastName'); ?>
+                                    </div>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input type="text" name="contactNo" class="form-control" placeholder="Contact No.">
+                                    <input type="text" name="contactNo" class="form-control <?php echo (form_error('contactNo')) ? 'is-invalid' : '' ?>" value="<?=set_value('contactNo')?>" placeholder="Contact No.">
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('contactNo'); ?>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="address" class="form-control" placeholder="Address">
+                                    <input type="text" name="address" class="form-control <?php echo (form_error('address')) ? 'is-invalid' : '' ?>" value="<?=set_value('address')?>" placeholder="Address">
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('address'); ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -63,8 +75,7 @@
                     </div>
                 </div>
                 <!-- END ADD MODAL -->
-
-                <div class="d-flex flex-row flex-wrap">
+                <div class="d-flex flex-row justify-content-center flex-wrap">
                 <?php foreach($students as $student): ?>
                 <div class="card w-15 m-4">
                     <div class="card-image">

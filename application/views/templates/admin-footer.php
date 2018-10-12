@@ -16,6 +16,15 @@
                 $(this).toggleClass('active');
             });
             $('[data-toggle="tooltip"]').tooltip();
+
+            <?php if(!empty(validation_errors())): ?>
+                <?php if($this->uri->uri_string() == 'admin/insertStudent'): ?>
+                    $('#assignStudentModal').modal('show');
+                <?php endif;?>
+                <?php if($this->uri->uri_string() == 'admin/insertSection'): ?>
+                    $('#addSectionModal').modal('show');
+                <?php endif;?>
+            <?php endif; ?>
     });
 </script>
 </html>

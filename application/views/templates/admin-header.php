@@ -19,11 +19,41 @@ if(!isset($this->session->userdata['type'])){
             height:100%;
         }
         .w-15{
-            width:15%;
+            width: 25%;
         }
         .card-image{
             height: 200px;
         }
+        .is-invalid{
+            border-color: red !important;
+        }
+        .invalid-feedback p {
+            color: red !important;
+        }
+
+@media (max-width: 575.98px) { 
+    .w-15{
+    width: 100% !important;
+  }
+ }
+@media (min-width: 576px) and (max-width: 767.98px) { 
+  .w-15{
+    width: 42% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    .w-15{
+    width: 40% !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .w-15{
+    width: 43% !important;
+    }
+}
+
+
     </style>
 </head>
 <body>

@@ -33,7 +33,10 @@
                             <div class="modal-body">
                                 <?php echo form_open('admin/insertSection'); ?>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="sectionName" placeholder="Section Name">
+                                    <input twype="text" class="form-control <?php echo (form_error('sectionName')) ? 'is-invalid' : '' ?>" name="sectionName" placeholder="Section Name" value="<?=set_value('sectionName') ?>">
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('sectionName'); ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

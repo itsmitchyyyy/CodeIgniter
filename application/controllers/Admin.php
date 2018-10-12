@@ -26,9 +26,7 @@ class Admin extends CI_Controller{
         $this->form_validation->set_rules('contactNo', 'Contact No' ,'required');
         $this->form_validation->set_rules('address', 'Address' ,'required');
         if($this->form_validation->run() === FALSE){
-            $this->load->view('templates/admin-header');
-            $this->load->view('admin/index', $data);
-            $this->load->view('templates/admin-footer');
+            $this->index();
         }else{
             $data = $this->admin_model->createStudent($data);
             $this->session->set_flashdata('message', 'Student Added');
@@ -65,9 +63,7 @@ class Admin extends CI_Controller{
     public function insertSection(){
         $this->form_validation->set_rules('sectionName', 'Section Name', 'required');
         if($this->form_validation->run() === FALSE){
-            $this->load->view('templates/admin-header');
-            $this->load->view('admin/section');
-            $this->load->view('templates/admin-footer');
+            $this->section();
         }else{
             $this->session->set_flashdata('message', 'Section Added');
             $this->admin_model->createSection();
