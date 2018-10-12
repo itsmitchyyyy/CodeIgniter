@@ -3,6 +3,8 @@ class Admin extends CI_Controller{
     public function index(){
         $data['title'] = 'Admin';
         $data['students'] = $this->admin_model->getStudents();
+        $data['sections'] = $this->admin_model->getSections();
+        $data['subjects'] = $this->admin_model->getSubjects();
 
         $this->load->view('templates/admin-header');
         $this->load->view('admin/index', $data);
@@ -44,11 +46,31 @@ class Admin extends CI_Controller{
 
     public function subject(){
         $data['title'] = 'Teacher';
+        $data['subjects'] = $this->admin_model->getSubjects();
         
         $this->load->view('templates/admin-header');
         $this->load->view('admin/subject', $data);
         $this->load->view('templates/admin-footer');
     }
+
+    public function insertSubject(){
+        $config = array(
+            array('field' => 'edpCode','label' => 'Edp Code','rules' => 'required' ),
+            array('field' => 'subjectName','label' => 'Subject Name','rules'=> 'required'),
+            array('field' => 'maxCapacity','label' => 'Max Capacity','rules'=> 'required'),
+            array('field' => 'units','label' => 'Units','rules'=> 'required'),
+            array('field' => 'subjectId','label' => 'Subject Name','rules'=> 'required', 'errors' => array('required' => 'Please select a subject')),
+        );
+        $this->form_validation->set_rules($config);
+        if($this->form_validation->run() === FALSE){
+            $this->subject();
+        }else{
+            $this->session->set_flashdata('message', 'Section Added');
+            $this->admin_model->createSubject();
+            redirect('admin/subject');
+        }
+    }
+
 
     // SECTION
 

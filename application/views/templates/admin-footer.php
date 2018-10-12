@@ -24,6 +24,9 @@
                 <?php if($this->uri->uri_string() == 'admin/insertSection'): ?>
                     $('#addSectionModal').modal('show');
                 <?php endif;?>
+                <?php if($this->uri->uri_string() == 'admin/insertSubject'): ?>
+                    $('#addSubjectModal').modal('show');
+                <?php endif;?>
             <?php endif; ?>
     });
 </script>

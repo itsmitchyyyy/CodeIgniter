@@ -75,4 +75,24 @@ class Admin_model extends CI_Model {
         $sectionData = array('sectionName' => $this->input->post('sectionName'));
         return $this->db->insert('sections', $sectionData);
     }
+
+    // Subjects
+
+    public function getSubjects($subject = null){
+        if($subject === null){
+            $query = $this->db->get('subjects');
+            return $query->result_array();
+        }
+        $query = $this->db->get_where('subjects', array('id' => $subject));
+            return $query->row_array();
+    }
+
+    public function createSubject(){
+        $subjectData = array(
+            'edpCode' => $this->input->post('edpCode'),
+            'subjectName' => $this->input->post('subjectName'),
+            'maxCapacity' => $this->input->post('maxCapacity'),
+            'units' => $this->input->post('units'),);
+        return $this->db->insert('subjects', $subjectData);
+    }
 }

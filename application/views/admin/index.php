@@ -65,6 +65,18 @@
                                         <?php echo form_error('address'); ?>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <?php /** TODO **/ ?>
+                                    <select name="subjectId" class="form-control <?php echo (form_error('subjectId')) ? 'is-invalid' : '' ?>">
+                                            <option disabled selected>Subject</option>
+                                        <?php foreach($subjects as $subject): ?>
+                                            <option value="<?= $subject['id']; ?>"  <?php set_select('state', $subject['id'], ((!empty(set_select('state', $subject['id']))) ? TRUE : FALSE )) ?>><?= $subject['subjectName'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?php echo form_error('subjectId'); ?>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
