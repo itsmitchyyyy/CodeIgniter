@@ -28,7 +28,7 @@ class Pages extends CI_Controller {
             $result = $this->page_model->login(array($username, $password));
             if($result['status'] == true){
                 $data = array(
-                    'logged_in' => $result['data']['userId'],
+                    'logged_in' => $result['data']['id'],
                     'name' => $result['name'],
                     'type' => $result['user']
                 );
@@ -37,7 +37,7 @@ class Pages extends CI_Controller {
                     redirect('admin');
                 }
                 if($result['user'] == 'teacher'){
-                    echo 'TODO TEACHER';
+                    redirect('teacher');
                 }
                 echo 'TODO STUDENT';
             }

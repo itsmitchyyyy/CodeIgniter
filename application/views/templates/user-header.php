@@ -13,17 +13,16 @@ if(!isset($this->session->userdata['type'])){
     <title>Project</title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bs.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/main.css">
     <style>
         html, body{
             height:100%;
         }
-        .w-15{
+       /* .w-15{
             width: 28%;
         }
         .card-image{
             height: 200px;
-        }
+        }*/
         .is-invalid{
             border-color: red !important;
         }
@@ -31,7 +30,7 @@ if(!isset($this->session->userdata['type'])){
             color: red !important;
         }
 
-@media (max-width: 575.98px) { 
+/*@media (max-width: 575.98px) { 
     .w-15{
     width: 100% !important;
   }
@@ -51,7 +50,7 @@ if(!isset($this->session->userdata['type'])){
     .w-15{
     width: 43% !important;
     }
-}
+}*/
 
 
     </style>

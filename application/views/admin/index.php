@@ -31,7 +31,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <?php echo form_open_multipart('admin/insertStudent'); ?>
+                                <?php echo form_open_multipart('admin/insertStudent', array('id' => 'studentForm')); ?>
                                 <div class="align-items-center d-flex justify-content-center mb-4">
                                     <input type="file" class="d-none" name="userPic" id="studentAvatar" onchange="loadFile(event)">
                                     <div class="studentAvatarContainer">
@@ -66,41 +66,67 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <?php /** TODO **/ ?>
-                                    <select name="subjectId" class="form-control <?php echo (form_error('subjectId')) ? 'is-invalid' : '' ?>">
-                                            <option disabled selected>Subject</option>
-                                        <?php foreach($subjects as $subject): ?>
-                                            <option value="<?= $subject['id']; ?>"  <?php set_select('state', $subject['id'], ((!empty(set_select('state', $subject['id']))) ? TRUE : FALSE )) ?>><?= $subject['subjectName'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                    <?php $config = array();
+                                    foreach($subjects as $subject){
+                                            $config[$subject['id']] = $subject['subjectName'];
+                                    }
+                                    $attrib = array();
+                                    $attrib['class'] = form_error('subjectId[]') ? 'form-control is-invalid' : 'form-control';
+                                    echo form_dropdown('subjectId[]' , $config, $config, $attrib);
+                                    ?>
                                     <div class="invalid-feedback">
-                                        <?php echo form_error('subjectId'); ?>
+                                        <?= form_error('subjectId[]'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <?php $config = array();
+                                        foreach($sections as $section){
+                                            $config[$section['id']] = $section['sectionName'];
+                                        }
+                                    $attrib = array();
+                                    $attrib['class'] = form_error('sectionId') ? 'form-control is-invalid' : 'form-control';
+                                    echo form_dropdown('sectionId', $config, '', $attrib);
+                                    ?>
+                                    <div class="invalid-feedback">
+                                        <?= form_error('sectionId'); ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-info">Save</button>
+                                <button class="btn btn-info" id="studentSave">Save</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- END ADD MODAL -->
-                <div class="d-flex flex-row justify-content-center flex-wrap">
+                <div class="d-flex flex-row justify-content-between flex-wrap">
                 <?php foreach($students as $student): ?>
                 <div class="card w-15 m-4">
                     <div class="card-image">
                     <img src="<?php echo base_url().'assets/uploads/'.$student['avatar']; ?>" class="card-img-top h-100 w-100">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"><?php  echo "{$student['firstName']} {$student['lastName']}" ?></h5>
-                        <p class="card-text">
-                            <span>Contact No: <?php echo $student['contactNo']; ?></span>
-                            <span>Address: <?php echo $student['address']; ?></span>
+                        <h5 class="card-title"><?= "{$student['firstName']} {$student['lastName']}" ?></h5>
+                        <p class="card-text d-flex flex-column">
+                            <span>Contact No: <?= $student['contactNo']; ?></span>
+                            <span>Address: <?= $student['address']; ?></span>
+                            <span>Section: <?= $student['sectionName']; ?></span>
+                            <div class="d-flex flex-column">
+                                <span>Subjects</span>
+                                <div class="d-flex flex-row flex-wrap">
+                                    <?php $this->load->model('admin_model');
+                                        $studentSubjects = $this->admin_model->studentSubjects($student['studentId']);
+                                        foreach($studentSubjects as $subject):
+                                    ?>
+                                    <span class="m-2"><?= $subject['subjectName']; ?></span>
+                                <?php endforeach; ?>
+
+                                </div>
+                            </div>
                         </p>
                         <div class="d-flex justify-content-end flex-row flex-wrap">
-                            <a href="#" class="mr-2"><i class="material-icons">visibility</i></a>
                             <a href="#" class="mr-2"><i class="material-icons">edit</i></a>
                             <a href="#"><i class="material-icons">delete_forever</i></a>
                         </div>

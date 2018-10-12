@@ -42,7 +42,7 @@ class Page_model extends CI_Model{
         $query = $this->db->select('*')
             ->from('teachers')
             ->join('user_teacher', 'user_teacher.teacherId = teachers.id')
-            ->where('teachers.id', $id)
+            ->where('user_teacher.userId', $id)
             ->get();
         return $query->row_array();
     }

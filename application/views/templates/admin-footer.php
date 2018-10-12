@@ -27,7 +27,16 @@
                 <?php if($this->uri->uri_string() == 'admin/insertSubject'): ?>
                     $('#addSubjectModal').modal('show');
                 <?php endif;?>
+                <?php if($this->uri->uri_string() == 'admin/insertTeacher'): ?>
+                    $('#addTeacherModal').modal('show');
+                <?php endif;?>
             <?php endif; ?>
+
+        $('#studentForm select').each(function(){
+            if($(this).has('option').length == 0){
+                $('#studentSave').prop('disabled', true);
+            }
+        });
     });
 </script>
 </html>

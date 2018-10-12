@@ -19,7 +19,7 @@
                     Add Subject
                 </button>
                 <!-- END BUTTON -->
-                
+                <?= validation_errors(); ?>
             <!-- ADD MODAL -->
                 <div class="modal fade" id="addSubjectModal">
                     <div class="modal-dialog">

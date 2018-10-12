@@ -10,6 +10,7 @@ class Admin_model extends CI_Model {
                 ->from('students')
                 ->join('user_student', 'user_student.studentId = students.id')
                 ->join('users', 'users.id = user_student.userId')
+                ->join('sections', 'sections.id = students.sectionId')
                 ->get();
             return $query->result_array();
         }
@@ -18,6 +19,7 @@ class Admin_model extends CI_Model {
             ->from('students')
             ->join('user_student', 'user_student.studentId = students.id')
             ->join('users', 'users.id = user_student.userId')
+                ->join('sections', 'sections.id = students.sectionId')
             ->where('students.id', $student)
             ->get();
         return $query->row_array();
@@ -42,7 +44,8 @@ class Admin_model extends CI_Model {
             'firstName' => $this->input->post('firstName'),
             'lastName' => $this->input->post('lastName'),
             'contactNo' => $this->input->post('contactNo'),
-            'address' => $this->input->post('address')
+            'address' => $this->input->post('address'),
+            'sectionId' => $this->input->post('sectionId')
         );
         $userData = array(
             'avatar' => $data,
@@ -57,8 +60,65 @@ class Admin_model extends CI_Model {
             'studentId' => $lastStudentId,
             'userId' => $lastUserId
         );
+        $subjects = $this->input->post('subjectId[]');
+        foreach ($subjects as $subject) {
+            $subjectList = array('studentId' => $lastStudentId, 'subjectId' => $subject);
+            $this->db->insert('student_subjects', $subjectList);
+        }
         return $this->db->insert('user_student', $userStudent);
     }
+
+    //Teacher
+ public function getTeachers($teacher = null){
+        if($teacher === null){
+            $query = $this->db->select('*')
+                ->from('teachers')
+                ->join('user_teacher', 'user_teacher.teacherId = teachers.id')
+                ->join('users', 'users.id = user_teacher.userId')
+                ->join('sections', 'sections.id = teachers.sectionId')
+                ->get();
+            return $query->result_array();
+        }
+
+        $query = $this->db->select('*')
+                ->from('teachers')
+                ->join('user_teacher', 'user_teacher.teacherId = teachers.id')
+                ->join('users', 'users.id = user_teacher.userId')
+                ->join('sections', 'sections.id = teachers.sectionId')
+            ->where('students.id', $teacher)
+            ->get();
+        return $query->row_array();
+    }
+
+    public function createTeacher($data){
+        $teacherData = array(
+            'firstName' => $this->input->post('firstName'),
+            'lastName' => $this->input->post('lastName'),
+            'contactNo' => $this->input->post('contactNo'),
+            'address' => $this->input->post('address'),
+            'sectionId' => $this->input->post('sectionId')
+        );
+        $userData = array(
+            'avatar' => $data,
+            'username' => $this->input->post('firstName'),
+            'password' => password_hash($this->input->post('lastName'), PASSWORD_DEFAULT)
+        );
+        $this->db->insert('users', $userData);
+        $lastUserId = $this->db->insert_id();
+        $this->db->insert('teachers', $teacherData);
+        $lastTeacherId = $this->db->insert_id();
+        $userTeacher = array(
+            'teacherId' => $lastTeacherId,
+            'userId' => $lastUserId
+        );
+        $subjects = $this->input->post('subjectId[]');
+        foreach ($subjects as $subject) {
+            $subjectList = array('teacherId' => $lastTeacherId, 'subjectId' => $subject);
+            $this->db->insert('teacher_subjects', $subjectList);
+        }
+        return $this->db->insert('user_teacher', $userTeacher);
+    }
+
 
     // SECTION
 
@@ -94,5 +154,43 @@ class Admin_model extends CI_Model {
             'maxCapacity' => $this->input->post('maxCapacity'),
             'units' => $this->input->post('units'),);
         return $this->db->insert('subjects', $subjectData);
+    }
+
+    // Student Subjects
+    public function studentSubjects($student = null){
+        if($student === null){
+            $query = $this->db->select('*')
+                ->from('students')
+                ->join('student_subjects', 'student_subjects.studentId = students.id')
+                ->join('subjects', 'subjects.id = student_subjects.subjectId')
+                ->get();
+            return $query->result_array();
+        }
+        $query = $this->db->select('*')
+            ->from('students')
+            ->join('student_subjects', 'student_subjects.studentId = students.id')
+            ->join('subjects', 'subjects.id = student_subjects.subjectId')
+            ->where('students.id' , $student)
+            ->get();
+        return $query->result_array();
+    }
+
+    //TEACHER SUBJECTS
+    public function teacherSubjects($teacher = null){
+        if($teacher === null){
+            $query = $this->db->select('*')
+                ->from('teachers')
+                ->join('teacher_subjects', 'teacher_subjects.teacherId = teachers.id')
+                ->join('subjects', 'subjects.id = teacher_subjects.subjectId')
+                ->get();
+            return $query->result_array();
+        }
+        $query = $this->db->select('*')
+                ->from('teachers')
+                ->join('teacher_subjects', 'teacher_subjects.teacherId = teachers.id')
+                ->join('subjects', 'subjects.id = teacher_subjects.subjectId')
+            ->where('teachers.id' , $teacher)
+            ->get();
+        return $query->result_array();
     }
 }
