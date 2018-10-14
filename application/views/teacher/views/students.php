@@ -2,6 +2,9 @@
 
 <div class="container-fluid">
 	<?php $this->load->view('teacher/pills'); ?>
+	<div class="d-flex ml-auto mr-auto mt-4 w-75">
+		<h4>Subject Name: <?= $currentSubject['subjectName']; ?></h4>
+	</div>
 	<table class="table mt-2 w-75 mr-auto ml-auto table-bordered table-striped">
 		<tr>
 			<th>First Name</th>

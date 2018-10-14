@@ -5,9 +5,11 @@
 
 	<table class="table mt-2 w-75 mr-auto ml-auto table-bordered table-striped">
 		<tr>
-			<th>Edp Code</th>
-			<th>Subject Name</th>
-			<th>Status</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Contact No.</th>
+			<th>Address</th>
+			<th>Option</th>
 		</tr>
 	</table>
 </div>

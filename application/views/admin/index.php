@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 <!-- END ADD MODAL -->
-                <div class="d-flex flex-row justify-content-between flex-wrap">
+                <div class="d-flex flex-row flex-wrap">
                 <?php foreach($students as $student): ?>
                 <div class="card w-15 m-4">
                     <div class="card-image">

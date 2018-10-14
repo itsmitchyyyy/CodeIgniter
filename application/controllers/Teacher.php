@@ -27,8 +27,9 @@ class Teacher extends CI_Controller {
         }
 	}
 
-	public function subjects($subject = null){
-		$data['subjects'] = $this->teacher_model->getStudentSubjects($subject);
+	public function subjects($subject = null, $section = null){
+		$data['subjects'] = $this->teacher_model->getStudentSubjects($subject, $section);
+		$data['currentSubject'] = $this->teacher_model->getSubject($subject);
 		if(empty($data['subjects'])){
 			show_404();
 		}
@@ -41,7 +42,8 @@ class Teacher extends CI_Controller {
 
 	//Students
 
-	public function students(){
+	public function students($section = null, $student = null){
+		$data['students'] = $this->teacher_model->getStudents($section, $student);
 		$data['title'] = 'Students';
 
 		$this->load->view('templates/user-header.php');

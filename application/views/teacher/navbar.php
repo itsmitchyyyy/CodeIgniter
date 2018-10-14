@@ -12,6 +12,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
 					<a href="#" class="dropdown-item">Profile</a>
+					<a href="<?= site_url('pages/logout') ?>" class="dropdown-item">Logout</a>
 				</div>
 			</li>
 		</ul>
