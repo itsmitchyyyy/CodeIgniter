@@ -1,7 +1,7 @@
 <?php 
 
-if(!isset($this->session->userdata['type'])){
-    header('location:'.base_url());
+if(isset($this->session->userdata['type']) !== 'admin'){
+    redirect('/');
 }
 ?>
 <!DOCTYPE html>

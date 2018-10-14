@@ -2,7 +2,7 @@
 class Teacher extends CI_Controller {
 	public function index(){
 		$data['title'] = 'Subjects';
-		$data['subjects'] = $this->teacher_model->getSubjects(null, $this->session->userdata['logged_in']);
+		$data['subjects'] = $this->teacher_model->getSubjects(null, $this->session->userdata['logged_in']['id']);
 
 		$this->load->view('templates/user-header.php');
 		$this->load->view('teacher/index', $data);
@@ -49,5 +49,30 @@ class Teacher extends CI_Controller {
 		$this->load->view('templates/user-header.php');
 		$this->load->view('teacher/students', $data);
 		$this->load->view('templates/user-footer.php');
+	}
+
+	public function updateStudent(){
+		$this->load->library('user_agent');
+		$validation = array(
+            array('field' => 'firstName','label' => 'First Name','rules' => 'required' ),
+            array('field' => 'lastName','label' => 'Last Name','rules'=> 'required'),
+            array('field' => 'contactNo','label' => 'Contact No','rules'=> 'required'),
+            array('field' => 'address','label' => 'Address','rules'=> 'required')
+        );
+        $this->form_validation->set_rules($validation);
+        if($this->form_validation->run() === FALSE){
+        	$error = $this->session->set_flashdata('error', validation_errors());
+        	redirect($this->agent->referrer());
+        }
+        $this->session->set_flashdata('message', 'Student Updated');
+        $this->teacher_model->updateStudent();
+        redirect($this->agent->referrer());
+	}
+
+	public function getStudents(){
+		$section =  $this->input->post('section');
+		$student =  $this->input->post('student');
+		$data = $this->teacher_model->getStudents($section, $student);
+		echo json_encode($data);
 	}
 }

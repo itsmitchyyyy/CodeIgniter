@@ -1,11 +1,11 @@
 <?php
 if(isset($this->session->userdata['type']) == 'admin'){
-    header('location: admin');
-}else
+    redirect('admin');
+}
 if(isset($this->session->userdata['type']) == 'student'){
     //  todo
-}else 
+}
 if(isset($this->session->userdata['type']) == 'teacher'){
-// 
+	redirect('teacher'); 
 }
 ?>

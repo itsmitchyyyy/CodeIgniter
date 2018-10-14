@@ -28,7 +28,7 @@ class Pages extends CI_Controller {
             $result = $this->page_model->login(array($username, $password));
             if($result['status'] == true){
                 $data = array(
-                    'logged_in' => $result['data']['id'],
+                    'logged_in' => $result['data'],
                     'name' => $result['name'],
                     'type' => $result['user']
                 );

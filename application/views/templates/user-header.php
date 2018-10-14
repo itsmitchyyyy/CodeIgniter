@@ -1,7 +1,7 @@
 <?php 
 
-if(!isset($this->session->userdata['type'])){
-    header('location:'.base_url());
+if(($this->session->userdata['type'] !== 'teacher') && ($this->session->userdata['type'] !== 'student')){
+    redirect('/');
 }
 ?>
 <!DOCTYPE html>

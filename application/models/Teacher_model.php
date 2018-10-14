@@ -35,12 +35,22 @@ class Teacher_model extends CI_Model {
 	//students
 
 	public function getStudents($section = null, $student = null){
-		if($student = null){
-			$query = $this->db->get_where('students', array('sectionId', $section));
+		if($student === null){
+			$query = $this->db->get_where('students', array('sectionId' => $section));
 				return $query->result_array();
 		}
 		$query = $this->db->get_where('students', array('sectionId' => $section, 'id' => $student));
 			return $query->row_array();
+	}
+
+	public function updateStudent(){
+		$id = $this->input->post('id');
+		$data = array(
+			'firstName' => $this->input->post('firstName'),
+			'lastName' => $this->input->post('lastName'),
+			'contactNo' => $this->input->post('contactNo'),
+			'address' => $this->input->post('address'));
+		return $this->db->update('students' , $data, array('id' => $id));
 	}
 
 	// Add Grade
