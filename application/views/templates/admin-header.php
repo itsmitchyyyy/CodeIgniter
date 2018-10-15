@@ -1,7 +1,9 @@
 <?php 
 
-if(isset($this->session->userdata['type']) !== 'admin'){
-    redirect('/');
+if(isset($this->session->userdata['type'])){
+    if($this->session->userdata['type'] !== 'admin'){
+        redirect('home');
+    }
 }
 ?>
 <!DOCTYPE html>

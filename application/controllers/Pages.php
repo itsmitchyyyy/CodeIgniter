@@ -4,9 +4,8 @@ class Pages extends CI_Controller {
         if(!file_exists(APPPATH.'views/pages/'.$page.'.php')){
             show_404();
         }
-
         $data['title'] = ucfirst($page);
-
+        
         $this->load->view('templates/header');
         $this->load->view('pages/'.$page, $data);
         $this->load->view('templates/footer');
@@ -44,6 +43,27 @@ class Pages extends CI_Controller {
             $this->session->set_flashdata('message', 'Invalid Credentials');
             redirect('');
         }
+    }
+
+    public function updatePassword(){
+        $this->load->library('user_agent');
+        $config = array(
+            array('field' => 'currentPassword', 'label' => 'Current Password', 'rules' => 'required'),
+            array('field' => 'newPassword', 'label' => 'New Password', 'rules' => 'required'),
+            array('field' => 'confirmPassword', 'label' => 'Confirm Password', 'rules' => 'required|matches[newPassword]')
+        );
+        $this->form_validation->set_rules($config);
+        if($this->form_validation->run() === FALSE){
+            $this->session->set_flashdata('passwordErrors', validation_errors());
+            redirect($this->agent->referrer());
+        }
+        $data = $this->page_model->updatePassword();
+        if($data == 0){
+            $this->session->set_flashdata('passwordErrors', 'Current Password is invalid');
+        }else{
+            $this->session->set_flashdata('message', 'Password Updated');
+        }
+        redirect($this->agent->referrer());
     }
 
     public function logout(){

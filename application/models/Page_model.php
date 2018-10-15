@@ -29,6 +29,19 @@ class Page_model extends CI_Model{
         }
     }
 
+    public function updatePassword(){
+        $this->db->where('id', $this->session->userdata['logged_in']['userId']);
+        $query = $this->db->get('users');
+        $data = $query->row_array();
+        if(password_verify($this->input->post('currentPassword'), $data['password'])){
+            $newPasswordData = array(
+                'password' => $this->input->post('newPassword')
+            );
+            return $this->db->update('users', $newPasswordData, array('id' => $this->session->userdata['logged_in']['userId']));
+        }
+        return 0;
+    }
+
     public function checkStudent($id){
         $query = $this->db->select('*')
             ->from('students')

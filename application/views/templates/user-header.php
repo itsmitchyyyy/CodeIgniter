@@ -1,7 +1,8 @@
 <?php 
-
-if(($this->session->userdata['type'] !== 'teacher') && ($this->session->userdata['type'] !== 'student')){
-    redirect('/');
+if(isset($this->session->userdata['type'])){
+    if($this->session->userdata['type'] !== 'teacher' && $this->session->userdata['type'] !== 'student'){
+        redirect('home');
+    }
 }
 ?>
 <!DOCTYPE html>

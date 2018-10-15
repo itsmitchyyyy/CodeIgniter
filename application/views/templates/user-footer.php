@@ -49,6 +49,10 @@
 		<?php if(!empty($this->session->flashdata('error'))): ?>
 				$('#addGradeModal').modal('show');
 		<?php endif; ?>
+		<?php if(!empty($this->session->flashdata('passwordErrors'))): ?>
+				$('#validationErrors').html(`<?= $this->session->flashdata('passwordErrors') ?>`);
+				$('#editPasswordModal').modal('show');
+		<?php endif; ?>
 	});
 </script>
 </html>
