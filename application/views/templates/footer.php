@@ -7,7 +7,7 @@
 <script>
  $(window).ready(function(){
      if(sessionStorage.getItem('dontLoad') == null){
-         $('.loader').delay(3000).show().fadeOut('slow');
+         $('.loader').delay(1000).show().fadeOut('slow');
          sessionStorage.setItem('dontLoad', true);
      }
 });

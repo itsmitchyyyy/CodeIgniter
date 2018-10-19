@@ -1,4 +1,4 @@
-<ul class="nav nav-pills w-75 mr-auto ml-auto">
+<ul class="nav nav-pills w-75 mr-auto ml-auto mt-3">
 	<li class="nav-item">
 		<a href="<?= base_url().'teacher' ?>" class="nav-link <?= (basename($_SERVER['REQUEST_URI']) == 'teacher') ? 'active' : '' ?>">Subjects</a>
 	</li>
