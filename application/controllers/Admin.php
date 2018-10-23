@@ -129,5 +129,13 @@ class Admin extends CI_Controller{
         }
     }
 
+    public function reports(){
+        $data['teachers'] = $this->admin_model->reportTeachers();
+
+        $this->load->view('templates/admin-header');
+        $this->load->view('admin/reports', $data);
+        $this->load->view('templates/admin-footer');
+    }
+
     
 }

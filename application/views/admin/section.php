@@ -52,16 +52,10 @@
                 <table class="table table-bordered table-striped m-2 w-75 mr-auto ml-auto">
                     <tr>
                         <th>Section Name</th>
-                        <th>Action</th>
                     </tr>
                     <?php foreach($sections as $section): ?>
                         <tr>
                             <td><?php echo $section['sectionName']; ?></td>
-                            <td>
-                            <a href="#" class="mr-2"><i class="material-icons">visibility</i></a>
-                            <a href="#" class="mr-2"><i class="material-icons">edit</i></a>
-                            <a href="#"><i class="material-icons">delete_forever</i></a>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </table>

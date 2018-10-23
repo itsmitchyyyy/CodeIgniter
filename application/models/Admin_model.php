@@ -193,4 +193,22 @@ class Admin_model extends CI_Model {
             ->get();
         return $query->result_array();
     }
+
+    //REPORTS
+    public function reportTeachers(){
+        $query = $this->db->select('*')
+            ->from('teachers')
+            ->join('sections', 'teachers.sectionId = sections.id')
+            ->get();
+        return $query->result_array();
+    }
+
+    public function reportSubjects(){
+        $query = $this->db->select('*')
+            ->from('teacher_subjects')
+            ->join('teachers', 'teacher_subjects.teacherId = teachers.id')
+            ->join('subjects', 'teacher_subjects.subjectId = subjects.id')
+            ->get();
+        return $query->result_array();
+    }
 }

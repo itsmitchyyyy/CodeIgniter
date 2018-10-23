@@ -10,6 +10,7 @@ class Page_model extends CI_Model{
         $result = $query->row_array();
         if(!empty($result) && password_verify($data[1], $result['password'])){
             $status = true;
+            $this->updateLogin($result['id']);
             if($result['username'] == 'admin'){
                    $name = "Admin Admin";
                    return array('status' => $status, 'user' => 'admin', 'name' => $name, 'data' => $result);
@@ -58,5 +59,13 @@ class Page_model extends CI_Model{
             ->where('user_teacher.userId', $id)
             ->get();
         return $query->row_array();
+    }
+
+    public function updateLogin($id){
+        $now = date('Y-m-d H:i:s');
+        $data = array(
+            'logged_in' => $now
+        );
+        $this->db->update('users', $data, array('id' => $id));
     }
 }

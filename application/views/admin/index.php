@@ -126,10 +126,6 @@
                                 </div>
                             </div>
                         </p>
-                        <div class="d-flex justify-content-end flex-row flex-wrap">
-                            <a href="#" class="mr-2"><i class="material-icons">edit</i></a>
-                            <a href="#"><i class="material-icons">delete_forever</i></a>
-                        </div>
                     </div>
                 </div>
                 <?php endforeach; ?>

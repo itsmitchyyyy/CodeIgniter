@@ -17,5 +17,8 @@
                 <li class="<?php echo ($this->uri->uri_string() == 'admin/section') ? 'active' : '' ?>">
                     <a href="<?php echo base_url() ?>admin/section">Section</a>
                 </li>
+                <li class="<?= ($this->uri->uri_string() == 'admin/reports') ? 'active' : '' ?>">
+                    <a href="<?= base_url() ?>admin/reports">Reports</a>
+                </li>
             </ul>
         </nav>

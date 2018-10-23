@@ -29,6 +29,10 @@ if(isset($this->session->userdata['type'])){
         .is-invalid{
             border-color: red !important;
         }
+        .nav-active{
+            background: #7386D5;
+            color: #fff;
+        }
         .invalid-feedback p {
             color: red !important;
         }

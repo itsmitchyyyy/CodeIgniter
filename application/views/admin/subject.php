@@ -73,7 +73,6 @@
                         <th>Subject Name</th>
                         <th>Units</th>
                         <th>Status</th>
-                        <th>Action</th>
                     </tr>
                     <?php foreach($subjects as $subject): ?>
                         <tr>
@@ -81,11 +80,6 @@
                             <td><?php echo $subject['subjectName']; ?></td>
                             <td><?php echo $subject['units']; ?></td>
                             <td><?php echo ($subject['status'] == 1) ? 'Open':'Closed'; ?></td>
-                            <td>
-                            <a href="#" class="mr-2"><i class="material-icons">visibility</i></a>
-                            <a href="#" class="mr-2"><i class="material-icons">edit</i></a>
-                            <a href="#"><i class="material-icons">delete_forever</i></a>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </table>
