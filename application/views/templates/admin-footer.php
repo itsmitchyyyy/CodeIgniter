@@ -28,8 +28,21 @@ var windowInstance;
         // END PRINT
 
         $('[data-toggle="tooltip"]').tooltip();
-        
+        // user logs
+        $.ajax({
+            url: "<?= base_url().'admin/logList'; ?>",
+            type: "get",
+            dataType: "json",
+            cache: false,
+            success: function(res){
+               console.log(res);
+            },
+            error: function(){
+                // 
+            }
+        });
 
+        // student reports
          $.ajax({
             url: "<?= base_url().'admin/studentList'; ?>",
             type: "get",
@@ -50,7 +63,8 @@ var windowInstance;
                 // 
             }
         });
-
+    
+        // teacher reports 
         $.ajax({
             url: "<?= base_url().'admin/teacherList'; ?>",
             type: "get",

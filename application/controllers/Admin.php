@@ -151,6 +151,12 @@ class Admin extends CI_Controller{
         echo json_encode($data);
     }
 
+    function logList(){
+        $data = $this->admin_model->reportLogs();
+
+        echo json_encode($data);
+    }
+
     function studentList(){
         $data = $this->admin_model->reportStudents();
         

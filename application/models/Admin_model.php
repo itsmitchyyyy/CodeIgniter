@@ -205,6 +205,21 @@ class Admin_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function reportLogs(){
+        $query = $this->db->select('CONCAT(teachers.firstName," ",teachers.lastName) as teacher_name, 
+                                    t1.logged_in as student_last_logged_in,
+                                    CONCAT(students.firstName," ",students.lastName) as student_name,
+                                    t2.logged_in as teacher_last_logged_in')
+            ->from('users t1, users t2')
+            ->join('user_student', 'user_student.userId = t1.id')
+            ->join('students', 'user_student.studentId = students.id')
+            ->join('user_teacher', 'user_teacher.userId = t2.id')
+            ->join('teachers', 'user_teacher.teacherId = teachers.id')
+            ->get();
+        return $query->result_array();
+
+    }
+
    public function reportStudents(){
        $query = $this->db->select('*')
             ->from('users')
