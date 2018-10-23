@@ -137,5 +137,25 @@ class Admin extends CI_Controller{
         $this->load->view('templates/admin-footer');
     }
 
+    public function student_reports(){
+        $data['teachers'] = $this->admin_model->reportTeachers();
+
+        $this->load->view('templates/admin-header');
+        $this->load->view('admin/reports/students', $data);
+        $this->load->view('templates/admin-footer');
+    }
+
+    function teacherList(){
+        $data = $this->admin_model->reportTeachers();
+
+        echo json_encode($data);
+    }
+
+    function studentList(){
+        $data = $this->admin_model->reportStudents();
+        
+        echo json_encode($data);
+    }
+
     
 }

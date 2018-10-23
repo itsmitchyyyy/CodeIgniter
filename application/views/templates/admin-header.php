@@ -37,6 +37,7 @@ if(isset($this->session->userdata['type'])){
             color: red !important;
         }
 
+
 @media (max-width: 575.98px) { 
     .w-15{
     width: 100% !important;

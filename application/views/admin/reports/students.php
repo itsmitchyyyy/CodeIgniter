@@ -12,16 +12,16 @@
                 <div>
                    <div class="d-flex m-2 flex-row flex-wrap">
                         <div class="d-flex">
-                            <a href="#" id="printTable" data-print="teacherList" data-toogle="tooltip" title="Print" data-placement="top">
+                            <a href="#" id="printTable" data-print="studentList" data-toogle="tooltip" title="Print" data-placement="top">
                                 <i class="material-icons">print</i>
                             </a>
                         </div>
                    </div>
-                    <table id="teacherList" class="mt-2 table table-striped tabled-bordered">
+                    <table id="studentList" class="mt-2 table table-striped tabled-bordered">
                         <tr>
                             <th>Name</th>
-                            <th>Section</th>
-                            <th>Subject</th>
+                            <th>Grade</th>
+                            <th>Remarks</th>
                         </tr>
                     </table>
                 </div>
