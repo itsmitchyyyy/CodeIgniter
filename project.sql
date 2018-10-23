@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2018 at 09:13 AM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.1.4
+-- Generation Time: Oct 23, 2018 at 08:16 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -161,23 +161,24 @@ CREATE TABLE `users` (
   `avatar` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '1'
+  `status` int(11) NOT NULL DEFAULT '1',
+  `logged_in` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `avatar`, `username`, `password`, `status`) VALUES
-(3, 'gwapa1.jpg', '18100001', '18100001', 1),
-(4, 'gwapa2.jpg', '18100001', '18100001', 1),
-(5, 'gwapa3.jpg', '18100001', '18100001', 1),
-(6, '', 'admin', '$2y$10$0ghBJcF9kcLcC3SkRpY3F.88RJgqjK.0HpgEaLGWOVCUJ4Q7uPwCm', 1),
-(7, 'gwapa4.jpg', '18100001', '18100001', 1),
-(8, 'gwapa12.jpg', '18100002', '18100002', 1),
-(9, 'gwapa14.jpg', '18100003', '$2y$10$P/gKBW4nr9QAfOUDmmu3Hum/3KtzVAnKsAHwa5OYVpFLcNCFof2mW', 1),
-(10, 'ruve.jpg', '18130004', '$2y$10$Qyhf.WTWWKii9FnOoSfv0O4yPBw66D7TvzFuoOUm9EGmVjLCyp6te', 1),
-(12, 'Untitled-5.jpg', 'Ruvejen', '$2y$10$wAlPhUncDK3kvzT2PY02WefpSumlPa8m8K9/DtRgAvBPYVno79DVW', 1);
+INSERT INTO `users` (`id`, `avatar`, `username`, `password`, `status`, `logged_in`) VALUES
+(3, 'gwapa1.jpg', '18100001', '18100001', 1, '2018-10-23 14:06:05'),
+(4, 'gwapa2.jpg', '18100001', '18100001', 1, '2018-10-23 14:06:05'),
+(5, 'gwapa3.jpg', '18100001', '18100001', 1, '2018-10-23 14:06:05'),
+(6, '', 'admin', '$2y$10$0ghBJcF9kcLcC3SkRpY3F.88RJgqjK.0HpgEaLGWOVCUJ4Q7uPwCm', 1, '2018-10-23 17:30:06'),
+(7, 'gwapa4.jpg', '18100001', '18100001', 1, '2018-10-23 14:06:05'),
+(8, 'gwapa12.jpg', '18100002', '18100002', 1, '2018-10-23 14:06:05'),
+(9, 'gwapa14.jpg', '18100003', '$2y$10$P/gKBW4nr9QAfOUDmmu3Hum/3KtzVAnKsAHwa5OYVpFLcNCFof2mW', 1, '2018-10-23 14:06:05'),
+(10, 'ruve.jpg', '18130004', '$2y$10$OkXR5CUM8KmLDrJkJPKALuI7PwyKVNmNpNUSk/e8z/29J/wTB5tvi', 1, '2018-10-23 14:13:44'),
+(12, 'Untitled-5.jpg', 'Ruvejen', '$2y$10$JoOY6dx6neONKG.nRktLl.rsyeAzypY5Ea01f8qIYHDT7/1MryluC', 1, '2018-10-23 14:06:05');
 
 -- --------------------------------------------------------
 
@@ -291,46 +292,55 @@ ALTER TABLE `user_teacher`
 --
 ALTER TABLE `sections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `teacher_subjects`
 --
 ALTER TABLE `teacher_subjects`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `user_student`
 --
 ALTER TABLE `user_student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `user_teacher`
 --
 ALTER TABLE `user_teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
