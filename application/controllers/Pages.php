@@ -38,7 +38,7 @@ class Pages extends CI_Controller {
                 if($result['user'] == 'teacher'){
                     redirect('teacher');
                 }
-                echo 'TODO STUDENT';
+                    redirect('student');
             }
             $this->session->set_flashdata('message', 'Invalid Credentials');
             redirect('');

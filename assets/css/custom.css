@@ -112,3 +112,23 @@ from { top:0; opacity: 0; }
     from { top: 60px; opacity: 1}
     to { top: 0; opacity: 0;}
 }
+
+.pointer{
+    cursor: pointer;
+}
+
+.grade {
+    background-size: 150px !important;
+    background-position: 90% !important;
+    mix-blend-mode: multiply;
+    background-repeat: no-repeat !important;
+}
+.grade.passed {
+  
+    background: url(../images/passed.png);
+   
+}
+.grade.failed {
+    background: url(../images/failed.png);
+}
+

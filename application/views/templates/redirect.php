@@ -7,6 +7,6 @@
             redirect('teacher');
         }
         if($this->session->userdata['type'] == 'student'){
-            echo 'TODO';
+            redirect('student');
         }
     }

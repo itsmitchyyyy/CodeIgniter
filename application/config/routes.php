@@ -8,6 +8,7 @@ $route['admin'] = 'admin/index';
 $route['teacher/subjects/(:any)'] = 'teacher/subjects/$1';
 $route['teacher/(:any)']= 'teacher/$1';
 $route['teacher'] = 'teacher/index';
+$route['student'] = 'student/index';
 $route['(:any)'] = 'pages/view/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
