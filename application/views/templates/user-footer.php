@@ -53,6 +53,12 @@
 				$('#validationErrors').html(`<?= $this->session->flashdata('passwordErrors') ?>`);
 				$('#editPasswordModal').modal('show');
 		<?php endif; ?>
+		<?php if(!empty($this->session->flashdata('message'))): ?>
+				$('#snackbar').addClass('show');
+				setTimeout(function(){
+					$('#snackbar').removeClass('show');
+				}, 3000);
+		<?php endif; ?>
 	});
 </script>
 </html>

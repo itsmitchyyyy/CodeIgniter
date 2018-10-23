@@ -35,7 +35,7 @@ class Page_model extends CI_Model{
         $data = $query->row_array();
         if(password_verify($this->input->post('currentPassword'), $data['password'])){
             $newPasswordData = array(
-                'password' => $this->input->post('newPassword')
+                'password' => password_hash($this->input->post('newPassword'), PASSWORD_DEFAULT)
             );
             return $this->db->update('users', $newPasswordData, array('id' => $this->session->userdata['logged_in']['userId']));
         }

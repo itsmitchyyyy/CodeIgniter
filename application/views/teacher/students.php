@@ -4,11 +4,9 @@
 	<?php $this->load->view('teacher/pills'); ?>
 	<div class="d-flex flex-column w-75 mr-auto ml-auto mt-4">
                 <!-- MESSAGE SESSION -->
-                <?php if($this->session->flashdata('message')): ?>
-                    <div class="alert alert-success">
-                        <p><?php echo $this->session->flashdata('message'); ?></p>
-                    </div>
-                <?php endif; ?>
+				<?php if(!empty($this->session->flashdata('message'))): ?>
+					<div class="snackbar" id="snackbar"><?= $this->session->flashdata('message') ?></div>
+				<?php endif; ?>
                 <!-- END SESSION -->
                 <div class="d-flex">
                 	

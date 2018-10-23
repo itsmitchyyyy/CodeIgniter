@@ -2,6 +2,9 @@
 
 <div class="container-fluid">
 	<?php $this->load->view('teacher/pills'); ?>
+	<?php if(!empty($this->session->flashdata('message'))): ?>
+		<div class="snackbar" id="snackbar"><?= $this->session->flashdata('message') ?></div>
+	<?php endif; ?>
 	<div class="d-flex ml-auto mr-auto mt-4 w-75">
 		<h4>Subject Name: <?= $currentSubject['subjectName']; ?></h4>
 	</div>
